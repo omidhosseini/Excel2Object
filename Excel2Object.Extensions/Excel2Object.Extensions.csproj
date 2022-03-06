@@ -11,6 +11,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>ListToExcel; ExcelToList</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseFile>C:\Users\omidh\source\repos\Excel2Object\LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
