@@ -84,8 +84,6 @@ namespace Excel2Object.Extensions
                 rowIndex++;
             }
 
-
-
             MemoryStream ms = new MemoryStream();
             xssWorkbook.Write(ms);
             ms.Close();
