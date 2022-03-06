@@ -1,29 +1,33 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Omid Hosseini</Authors>
-    <Description>By this package you can convert a List to an Excel file and also convert an Excel file to a list object</Description>    
-    <PackageProjectUrl>https://github.com/omidhosseini/Excel2Object.git</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/omidhosseini/Excel2Object.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>ListToExcel; ExcelToList</PackageTags>
-    <NeutralLanguage>en</NeutralLanguage>
-    <PackageLicenseFile>C:\Users\omidh\source\repos\Excel2Object\LICENSE</PackageLicenseFile>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>Omid Hosseini</Authors>
+		<Description>By this package you can convert a List to an Excel file and also convert an Excel file to a list object</Description>
+		<PackageProjectUrl>https://github.com/omidhosseini/Excel2Object.git</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/omidhosseini/Excel2Object.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>ListToExcel; ExcelToList</PackageTags>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NPOI" Version="2.5.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE" Pack="True" PackagePath="" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NPOI" Version="2.5.5" />
+	</ItemGroup>
 
 </Project>
