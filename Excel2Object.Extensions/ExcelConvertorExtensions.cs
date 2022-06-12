@@ -28,20 +28,36 @@ namespace Excel2Object.Extensions
 
             for (int row = 1; row <= sheet.LastRowNum; row++)
             {
+                IRow rowData = sheet.GetRow(row);
+                if (rowData == null) continue;
+
+                if (rowData.Cells.All(x => x.CellType == CellType.Blank)) continue;
+
                 TOut newObj = new TOut();
                 foreach (var item in outputProperties)
                 {
                     if (!columnIndex.TryGetValue(item.Name, out var cellIndex)) continue;
 
-                    if (sheet.GetRow(row) is null) continue;
+                    if (rowData is null) continue;
 
-                    if (sheet.GetRow(row).GetCell(cellIndex) is null) continue;
+                    ICell cell = rowData.GetCell(cellIndex, MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                    if (cell is null) continue;
+
+                    string cellValue = cell.ToString();
+                    Type t = Nullable.GetUnderlyingType(item.PropertyType) ?? item.PropertyType;
+
+                    if (t == typeof(bool))
+                    {
+                        cellValue = string.IsNullOrWhiteSpace(cellValue) ? "false" : "true";
+                    }
+
 
                     var objProp = newObj.GetType().GetProperty(item.Name);
-                    if(!objProp.CanWrite) continue;
+                    if (!objProp.CanWrite) continue;
 
-                    var cellValue = Convert.ChangeType(sheet.GetRow(row).Cells[cellIndex].ToString(), item.PropertyType);
-                    objProp.SetValue(newObj, cellValue, null);
+                    object safeValue = (cellValue == null) ? null : Convert.ChangeType(cellValue, t);
+
+                    objProp.SetValue(newObj, safeValue, null);
                 }
 
                 output.Add(newObj);
@@ -92,7 +108,7 @@ namespace Excel2Object.Extensions
             var result = new ObjectToExcelFileResult
             {
                 ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                FileName = $"{fileName ?? DateTime.UtcNow.ToString("MM-dd-yyyy")}.xlsx",                
+                FileName = $"{fileName ?? DateTime.UtcNow.ToString("MM-dd-yyyy")}.xlsx",
                 File = ms.ToArray()
             };
 
