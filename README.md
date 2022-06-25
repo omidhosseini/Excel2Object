@@ -4,7 +4,7 @@ This library convert an Excel file to an object list and also convert a list to 
 ## Usage
 - Add nuget package:
 ```csharp
-dotnet add package Excel2Object.Extensions --version 1.0.1
+dotnet add package Excel2Object.Extensions --version 1.1.0
 ```
 
 - For converting a list to an Excel file:
